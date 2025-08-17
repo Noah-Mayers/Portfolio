@@ -36,9 +36,18 @@
     </section>
     <div style="height:100vh;"></div>
     <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum.</p>
+        <div class="education-text" data-aos="fade-up" data-aos-offset="200">
+            <div class="education-container">
+                <div class="education-text">
+                    <h2>Education</h2>
+                    <h3 class="school">Milwaukee School of Engineering</h3>
+                    <p class="degree">Degree: BA in Software Engineering</p>
+                    <p class="focus">Focus: User Experience, Mathematics</p>
+                </div>
+                <div class="education-image">
+                    <img src="images/msoe.png" alt="Education Image">
+                </div>
+            </div>
         </div>
     </section>
     <section id="skills">
@@ -119,29 +128,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({
-            once: true,
+            once: false,
             duration: 800,
             offset: 100
         });
     </script>
     <script>
-        document.getElementById('#scrollButton').addEventListener('click', function(e){
-        e.preventDefault();
-        const heroHeight = document.getElementById('intro').offsetHeight;
-        const targetY = document.getElementById('education').offsetTop - heroHeight;
-        const duration = 800;
-        const startY = window.scrollY;
-        let startTime = null;
-
-        function scrollStep(timestamp) {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime)/duration, 1);
-            const ease = progress<0.5 ? 4*progress*progress*progress : 1-Math.pow(-2*progress+2,3)/2;
-            window.scrollTo(0, startY + (targetY - startY) * ease);
-            if (progress < 1) requestAnimationFrame(scrollStep);
-        }
-
-        requestAnimationFrame(scrollStep);
+        let lastScrollY = window.scrollY;
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY) {
+                navbar.style.top = '-80px';
+            } else {
+                navbar.style.top = '0';
+            }
+            lastScrollY = window.scrollY;
         });
     </script>
 </body>

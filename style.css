@@ -9,23 +9,66 @@ html {
     height: 100%;
     width: 100%;
   }
+
+  body.no-scroll {
+    overflow: hidden;
+    height: 100%;
+  }
   
   section {
     scroll-margin-top: 70px;
   }
   
+  .navbar {
+    position: fixed;
+    width: 100%;
+    top: -80px;
+    left: 0;
+    background-color: transparent;
+    transition: top 0.3s ease;
+    z-index: 100;
+  }
+  
+  .navbar .nav-link,
+.navbar .navbar-brand {
+  font-weight: 700;
+  color: white;
+  mix-blend-mode: difference;
+  transition: color 0.3s ease;
+}
+  
+  .navbar .nav-link:hover {
+    background-color: white;
+    color: black; 
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    mix-blend-mode: difference;
+  }
+
   #intro {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 97.5vh;
     background: linear-gradient(135deg, #007BFF, #6C63FF, #FF6EC7);
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  #intro::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px; /* how much of the next section to peek */
+    background: linear-gradient(to bottom, transparent, white);
+    z-index: 2; /* above hero content */
+    pointer-events: none;
   }
   
   .hero-content {
@@ -75,15 +118,17 @@ html {
     opacity: 1;
   }
   
-  section::before {
+  section:not(#intro)::before {
     content: "";
     position: absolute;
-    top: -20px;
+    top: -40px;
     left: 0;
     width: 100%;
-    height: 20px;
+    height: 40px;
     background: linear-gradient(to top, white, transparent);
+    z-index: 4;
     pointer-events: none;
+    opacity: 1;
   }
   
   section h2 {
@@ -93,12 +138,97 @@ html {
   }
   
   section p {
-    font-size: 1.1rem;
+    font-size: 01.1rem;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
   
+  .education-section {
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .education-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  .education-text {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+  }
+  
+  .education-text h2 {
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .education-text h3.school {
+    font-size: 2.0rem; /* slightly bigger than regular paragraph */
+    font-weight: 500;  /* medium-bold */
+    margin-top: 1rem;
+    margin-bottom: 2.0rem; /* space below before next paragraph */
+    text-align: center; /* optional, center it */
+  }
+  
+  .education-text p.degree,
+  .education-text p.focus {
+    font-size: 1.5rem;
+    margin: 0.3rem 0; /* space between these paragraphs */
+    text-align: center; /* optional */
+  }
+  
+  .education-image {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .education-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    filter: grayscale(100%);
+    transition: filter 0.75s ease, opacity 0.3s ease;
+  }
+
+  .education-image img:hover {
+    filter: grayscale(0%)
+  }
+  
+  @media (max-width: 768px) {
+    .education-container {
+      flex-direction: column;
+    }
+  
+    .education-text,
+    .education-image {
+      flex: 1 1 100%;  
+      max-height: 50vh; 
+    }
+  
+    .education-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   #skills .row {
     margin-top: 2rem;
   }
