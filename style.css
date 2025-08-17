@@ -105,7 +105,8 @@ html {
     position: relative;
     z-index: 3;
     background: white;
-    width: 100dvw;
+    width: 100vw;
+    min-width: 100vw;
     min-height: 100dvh;
     display: flex;
     flex-direction:column;
@@ -140,6 +141,10 @@ html {
     margin: 0 auto;
     text-align: center;
   }
+
+  section .container {
+    max-width: 100% !important;
+}
   
   .education-section {
     min-height: 100vh; 
