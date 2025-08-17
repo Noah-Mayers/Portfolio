@@ -6,12 +6,14 @@ html {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    height: 100dvh;
-    width: 100dvw;
+    height: 100%;
+    width: 100vw; /* ensure full viewport width */
   }
   
-  section {
-    scroll-margin-top: 70px;
+  /* Navbar */
+  body.no-scroll {
+    overflow: hidden;
+    height: 100%;
   }
   
   .navbar {
@@ -25,26 +27,58 @@ html {
   }
   
   .navbar .nav-link,
-.navbar .navbar-brand {
-  font-weight: 700;
-  color: white;
-  mix-blend-mode: difference;
-  transition: color 0.3s ease;
-}
+  .navbar .navbar-brand {
+    font-weight: 700;
+    color: white;
+    mix-blend-mode: difference;
+    transition: color 0.3s ease;
+  }
   
   .navbar .nav-link:hover {
     background-color: white;
-    color: black; 
+    color: black;
     border-radius: 4px;
     padding: 0.5rem 0.8rem;
     mix-blend-mode: difference;
   }
-
+  
+  /* Sections */
+  section {
+    scroll-margin-top: 70px;
+    width: 100vw; /* ensure full width */
+  }
+  
+  section:not(#intro) {
+    position: relative;
+    z-index: 3;
+    background: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 4vw, 2rem);
+    opacity: 1;
+  }
+  
+  section:not(#intro)::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100vw;
+    height: 40px;
+    background: linear-gradient(to top, white, transparent);
+    z-index: 4;
+    pointer-events: none;
+    opacity: 1;
+  }
+  
+  /* Intro section */
   #intro {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 97.5vh;
     background: linear-gradient(135deg, #007BFF, #6C63FF, #FF6EC7);
     z-index: 1;
@@ -53,16 +87,16 @@ html {
     align-items: center;
     flex-direction: column;
   }
-
+  
   #intro::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 40px; /* how much of the next section to peek */
+    width: 100vw;
+    height: 40px;
     background: linear-gradient(to bottom, transparent, white);
-    z-index: 2; /* above hero content */
+    z-index: 2;
     pointer-events: none;
   }
   
@@ -70,7 +104,7 @@ html {
     text-align: center;
     color: white;
     z-index: 1;
-    padding: 2rem;
+    padding: clamp(1rem, 5vw, 2rem);
   }
   
   .hero-content h1 {
@@ -87,7 +121,7 @@ html {
     position: absolute;
     bottom: 10vh;
     color: white;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     animation: bounce 2s infinite;
     white-space: nowrap;
     left: 0;
@@ -101,58 +135,7 @@ html {
     60% { transform: translateY(-5px); }
   }
   
-  section:not(#intro) {
-    position: relative;
-    z-index: 3;
-    background: white;
-    width: 100vw;
-    min-width: 100vw;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    padding: 5rem 2rem;
-    opacity: 1;
-    box-sizing: border-box;
-  }
-  
-  section:not(#intro)::before {
-    content: "";
-    position: absolute;
-    top: -40px;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(to top, white, transparent);
-    z-index: 4;
-    pointer-events: none;
-    opacity: 1;
-  }
-  
-  section h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  section p {
-    font-size: 01.1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  section .container {
-    max-width: 100% !important;
-}
-  
-  .education-section {
-    min-height: 100vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  /* Education Section */
   .education-container {
     display: flex;
     flex-wrap: wrap;
@@ -160,36 +143,34 @@ html {
     height: 100%;
   }
   
-  
   .education-text {
     flex: 1 1 50%;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-
+    padding: clamp(1rem, 4vw, 2rem);
   }
   
   .education-text h2 {
-    font-size: 5rem;
+    font-size: clamp(2.5rem, 8vw, 5rem);
     margin-bottom: 0.5rem;
     font-weight: bold;
   }
   
   .education-text h3.school {
-    font-size: 2.0rem; /* slightly bigger than regular paragraph */
-    font-weight: 500;  /* medium-bold */
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 500;
     margin-top: 1rem;
-    margin-bottom: 2.0rem; /* space below before next paragraph */
-    text-align: center; /* optional, center it */
+    margin-bottom: 2rem;
+    text-align: center;
   }
   
   .education-text p.degree,
   .education-text p.focus {
-    font-size: 1.5rem;
-    margin: 0.3rem 0; /* space between these paragraphs */
-    text-align: center; /* optional */
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin: 0.3rem 0;
+    text-align: center;
   }
   
   .education-image {
@@ -197,9 +178,9 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: clamp(1rem, 4vw, 2rem);
   }
-
+  
   .education-image img {
     max-width: 100%;
     height: auto;
@@ -208,29 +189,12 @@ html {
     filter: grayscale(100%);
     transition: filter 0.75s ease, opacity 0.3s ease;
   }
-
+  
   .education-image img:hover {
-    filter: grayscale(0%)
+    filter: grayscale(0%);
   }
   
-  @media (max-width: 768px) {
-    .education-container {
-      flex-direction: column;
-    }
-  
-    .education-text,
-    .education-image {
-      flex: 1 1 100%;  
-      max-height: 50vh; 
-    }
-  
-    .education-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
+  /* Skills */
   #skills .row {
     margin-top: 2rem;
   }
@@ -251,14 +215,33 @@ html {
   }
   
   #skills .card i {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 6vw, 3rem);
     margin-bottom: 1rem;
   }
   
+  /* Footer */
   footer {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: clamp(1rem, 3vw, 2rem);
     background-color: #212529;
     color: white;
   }
   
+  /* Responsive */
+  @media (max-width: 768px) {
+    .education-container {
+      flex-direction: column;
+    }
+  
+    .education-text,
+    .education-image {
+      flex: 1 1 100%;
+      max-height: 50vh;
+    }
+  
+    .education-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
