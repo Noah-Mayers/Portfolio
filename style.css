@@ -1,15 +1,19 @@
-/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
   }
   
-  /* Hero section background */
   #intro {
     background: linear-gradient(135deg, #007BFF 0%, #6C63FF 100%);
+    min-height: 100vh; /* already vh-100, safe */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
-  /* Spacing fix so sections aren’t hidden behind navbar */
   section {
+    position: relative; 
+    z-index: 1;
     scroll-margin-top: 70px; /* height of navbar */
   }
   
@@ -20,6 +24,12 @@ html {
   section p {
     font-size: 1.1rem;
     max-width: 800px;
+  }
+
+  body, html {
+    height: 100%;
+    width: 100%;
+    background: #f8f9fa; /* light gray behind sections */
   }
 
 #skills .card {
