@@ -9,11 +9,6 @@ html {
     height: 100dvh;
     width: 100dvw;
   }
-
-  body.no-scroll {
-    overflow: hidden;
-    height: 100%;
-  }
   
   section {
     scroll-margin-top: 70px;
@@ -110,12 +105,14 @@ html {
     position: relative;
     z-index: 3;
     background: white;
-    min-height: 100vh;
+    width: 100dvw;
+    min-height: 100dvh;
     display: flex;
     flex-direction:column;
     justify-content: center;
     padding: 5rem 2rem;
     opacity: 1;
+    box-sizing: border-box;
   }
   
   section:not(#intro)::before {
