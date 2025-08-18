@@ -51,64 +51,59 @@
         </div>
     </section>
     <section id="skills">
-        <div class="container">
-        <h2 class="text-center mb-5">Skills</h2>
-        <div class="row g-4">
-            <div class="col-md-4 col-sm-6">
-            <div class="card h-100 text-center shadow-sm border-0">
-                <div class="card-body">
-                <i class="bi bi-code-slash display-4 text-primary mb-3"></i>
-                <h5 class="card-title">Frontend Development</h5>
-                <p class="card-text">HTML, CSS, JavaScript, Bootstrap, React</p>
+        <div class="container my-5">
+            <h2 class="text-center mb-5 fade-in fade-delay-1">Skills</h2>
+            <div class="skill-cards-container row g-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="card skill-card fade-in fade-delay-2">
+                        <i class="bi bi-code-slash display-4 text-primary mb-3"></i>
+                        <h5 class="card-title">Frontend Development</h5>
+                        <p class="card-text">HTML, CSS, JavaScript, Bootstrap, React, Mobile</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card skill-card fade-in fade-delay-3">
+                        <i class="bi bi-server display-4 text-danger mb-3"></i>
+                        <h5 class="card-title">Backend Development</h5>
+                        <p class="card-text">Java, Python, SQL, .NET, REST, C, PHP, Rust</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card skill-card fade-in fade-delay-4">
+                        <i class="bi bi-diagram-3 display-4 text-success mb-3"></i>
+                        <h5 class="card-title">Development Lifecycle</h5>
+                        <p class="card-text">Agile, Scrum, QA & Testing, Version Control</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card skill-card fade-in fade-delay-5">
+                        <i class="bi bi-tools display-4 text-warning mb-3"></i>
+                        <h5 class="card-title">Frameworks & Tools</h5>
+                        <p class="card-text">Spring, Git, Tailwind, Figma, Docker, Jenkins</p>
+                    </div>
                 </div>
             </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-            <div class="card h-100 text-center shadow-sm border-0">
-                <div class="card-body">
-                <i class="bi bi-brush display-4 text-success mb-3"></i>
-                <h5 class="card-title">UI/UX Design</h5>
-                <p class="card-text">Wireframing, Prototyping, Figma, Responsive Layouts</p>
+            <h3 class="cert-title text-center mb-4 fade-in fade-delay-6">Certifications</h3>
+            <div class="row g-4">
+                <div class="cert-cards-container">
+                    <div class="cert-card fade-in fade-delay-7">
+                        <img src="images/java.png" alt="Java">
+                        <h5>Java</h5>
+                    </div>
+                    <div class="cert-card fade-in fade-delay-8">
+                        <img src="images/python.png" alt="Python">
+                        <h5>Python</h5>
+                    </div>
+                    <div class="cert-card fade-in fade-delay-9">
+                        <img src="images/agile.png" alt="Agile">
+                        <h5>Agile</h5>
+                    </div>
+                    <div class="cert-card fade-in fade-delay-10">
+                        <img src="images/sql.png" alt="SQL">
+                        <h5>SQL</h5>
+                    </div>
                 </div>
             </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-            <div class="card h-100 text-center shadow-sm border-0">
-                <div class="card-body">
-                <i class="bi bi-phone display-4 text-warning mb-3"></i>
-                <h5 class="card-title">Mobile Friendly</h5>
-                <p class="card-text">Cross-device experiences & accessibility</p>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-            <div class="card h-100 text-center shadow-sm border-0">
-                <div class="card-body">
-                <i class="bi bi-layers display-4 text-danger mb-3"></i>
-                <h5 class="card-title">Frameworks</h5>
-                <p class="card-text">Bootstrap, Tailwind, Vue.js basics</p>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-            <div class="card h-100 text-center shadow-sm border-0">
-                <div class="card-body">
-                <i class="bi bi-github display-4 text-dark mb-3"></i>
-                <h5 class="card-title">Version Control</h5>
-                <p class="card-text">Git, GitHub, GitHub Pages</p>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-            <div class="card h-100 text-center shadow-sm border-0">
-                <div class="card-body">
-                <i class="bi bi-lightning-charge display-4 text-info mb-3"></i>
-                <h5 class="card-title">Performance</h5>
-                <p class="card-text">Optimizing load speed, clean code, best practices</p>
-                </div>
-            </div>
-            </div>
-        </div>
         </div>
     </section>
     <section id="work">
@@ -143,6 +138,25 @@
                 navbar.style.top = '0';
             }
             lastScrollY = window.scrollY;
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const faders = document.querySelectorAll(".fade-in");
+            const appearOptions = {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
         });
     </script>
 </body>
