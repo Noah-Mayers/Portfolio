@@ -1,5 +1,7 @@
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto
 }
 
 body, html {
@@ -7,7 +9,7 @@ body, html {
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
   height: 100%;
-  width: 100vw;
+  width: 100dvw;
 }
 
 body.no-scroll {
@@ -43,7 +45,7 @@ body.no-scroll {
 
 section {
   scroll-margin-top: 70px;
-  width: 100vw;
+  width: 100dvw;
 }
 
 section:not(#intro) {
@@ -58,7 +60,7 @@ section:not(#intro) {
   opacity: 1;
 }
 
-section:not(#intro)::before {
+#education::before {
   content: "";
   position: absolute;
   top: -40px;
@@ -124,6 +126,7 @@ section:not(#intro)::before {
   left: 0;
   right: 0;
   margin: 0 auto;
+  width: 50dvw;
 }
 
 @keyframes bounce {
@@ -295,6 +298,179 @@ section:not(#intro)::before {
     transform: translateY(-6px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
+  
+  #work {
+    position: relative;
+    padding: clamp(4rem, 5vw, 6rem) 0;
+    background: white;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #work h2 {
+    font-size: clamp(2rem, 5vw, 4rem); /* scales between 2rem and 4rem */
+    text-align: center; /* optional, keeps it centered */
+    font-weight: bold;
+}
+  
+  /* Carousel Wrapper */
+  .work-carousel-wrapper {
+    position: relative;       /* relative to section */
+    width: 100%;
+    overflow: visible;        /* allow cards at edges to be visible */
+    display: flex;
+    justify-content: center;  /* center the carousel */
+    padding: 2rem 0;
+  }
+  
+  /* Carousel */
+  .work-carousel {
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.4s ease-out;
+    will-change: transform;
+    gap: 5px;
+  }
+
+  .work-card-wrapper {
+    flex: 0 0 clamp(300px, 35%, 400px); /* min, relative, max width */
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Card fills wrapper entirely */
+  .work-card {
+    width: 100%;
+    height: 100%;
+    width: 100%;       /* fills wrapper */
+    margin: 0 15px;
+    height: auto;                  /* expand height with content */
+    background: linear-gradient(135deg, #f0f0f5, #dbdbe8);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform-origin: center center;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    word-break: break-word;
+    color: black;
+    z-index: 1;
+}
+
+.work-card h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;  /* centers the title */
+    margin-bottom: 0.5rem;
+    white-space: nowrap; /* prevents breaking onto multiple lines */
+}
+
+.work-card h6 {
+    font-size: 1rem;
+    color: black;
+    text-align: center;  /* centers company and dates */
+    margin-bottom: 0.5rem;
+}
+
+.work-card ul {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.work-card li {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.work-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.bg-bcbsa::before, .bg-carefirst::before, .bg-revature::before, .bg-brady::before, .bg-swim::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%;          /* scale down to 75% */
+    height: 75%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.2;        /* 50% transparency */
+    z-index: 0;          /* behind the content */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-bcbsa::before {
+    background-image: url('images/bcbsa.png');
+}
+  
+.bg-carefirst::before {
+    background-image: url('images/carefirst.png');
+}
+
+.bg-revature::before {
+    background-image: url('images/revature.png');
+}
+
+.bg-brady::before {
+    background-image: url('images/brady.png');
+}
+
+.bg-swim::before {
+    background-image: url('images/swim.png');
+}
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .work-carousel-wrapper {
+      width: 100%;           /* wrapper full width */
+      margin-left: 0;        /* reset any desktop margin */
+      overflow: visible;     /* keep cards visible */
+      justify-content: center;
+    }
+  
+    @media (max-width: 768px) {
+        .work-carousel {
+          justify-content: flex-start;  /* allow cards to shrink */
+          gap: 1rem;                    /* spacing between cards */
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      
+        .work-card-wrapper {
+          flex: 0 0 auto;               /* allow width to be controlled */
+          width: 60vw;                  /* width relative to viewport */
+          max-width: 280px;             /* optional cap */
+        }
+      
+        .work-card {
+          height: auto;
+          min-height: 250px;            /* keeps cards readable */
+        }
+      }
+
+      .work-card h5 {
+        font-size: clamp(1rem, 4vw, 1.25rem); /* min 1rem, max 1.25rem, scales with viewport */
+        text-align: center;                   /* keep centered */
+        line-height: 1.2;                     /* optional: tighter spacing */
+      }
+    
+      .work-card h6 {
+        font-size: clamp(0.8rem, 3vw, 1rem);
+        text-align: center;
+        margin: 0.2rem 0;
+      }
+  }
+
 
 footer {
   text-align: center;
