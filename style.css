@@ -8,14 +8,9 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  height: 100%;
-  width: 100dvw;
+  width: 100vw;
 }
 
-body.no-scroll {
-  overflow: hidden;
-  height: 100%;
-}
 
 .navbar {
   position: fixed;
@@ -45,8 +40,16 @@ body.no-scroll {
 
 section {
   scroll-margin-top: 70px;
-  width: 100dvw;
+  width: 100vw;
 }
+
+section > .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
 
 section:not(#intro) {
   position: relative;
@@ -310,22 +313,19 @@ section:not(#intro) {
   }
 
   #work h2 {
-    font-size: clamp(2rem, 5vw, 4rem); /* scales between 2rem and 4rem */
-    text-align: center; /* optional, keeps it centered */
+    font-size: clamp(2rem, 5vw, 4rem); 
     font-weight: bold;
 }
   
-  /* Carousel Wrapper */
   .work-carousel-wrapper {
-    position: relative;       /* relative to section */
+    position: relative;
     width: 100%;
-    overflow: visible;        /* allow cards at edges to be visible */
+    overflow: visible;  
     display: flex;
-    justify-content: center;  /* center the carousel */
+    justify-content: center; 
     padding: 2rem 0;
   }
   
-  /* Carousel */
   .work-carousel {
     display: flex;
     align-items: flex-start;
@@ -335,18 +335,17 @@ section:not(#intro) {
   }
 
   .work-card-wrapper {
-    flex: 0 0 clamp(300px, 35%, 400px); /* min, relative, max width */
+    flex: 0 0 clamp(300px, 35%, 400px); 
     display: flex;
     justify-content: center;
   }
   
-  /* Card fills wrapper entirely */
   .work-card {
     width: 100%;
     height: 100%;
-    width: 100%;       /* fills wrapper */
+    width: 100%;       
     margin: 0 15px;
-    height: auto;                  /* expand height with content */
+    height: auto;                 
     background: linear-gradient(135deg, #f0f0f5, #dbdbe8);
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
@@ -364,15 +363,15 @@ section:not(#intro) {
 .work-card h5 {
     font-size: 1.5rem;
     font-weight: 600;
-    text-align: center;  /* centers the title */
+    text-align: center; 
     margin-bottom: 0.5rem;
-    white-space: nowrap; /* prevents breaking onto multiple lines */
+    white-space: nowrap; 
 }
 
 .work-card h6 {
     font-size: 1rem;
     color: black;
-    text-align: center;  /* centers company and dates */
+    text-align: center; 
     margin-bottom: 0.5rem;
 }
 
@@ -396,14 +395,14 @@ section:not(#intro) {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 75%;          /* scale down to 75% */
+    width: 75%;        
     height: 75%;
     transform: translate(-50%, -50%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    opacity: 0.2;        /* 50% transparency */
-    z-index: 0;          /* behind the content */
+    opacity: 0.2;       
+    z-index: 0;       
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -429,39 +428,38 @@ section:not(#intro) {
     background-image: url('images/swim.png');
 }
 
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .work-carousel-wrapper {
-      width: 100%;           /* wrapper full width */
-      margin-left: 0;        /* reset any desktop margin */
-      overflow: visible;     /* keep cards visible */
+      width: 100%;    
+      margin-left: 0;       
+      overflow: visible;   
       justify-content: center;
     }
   
     @media (max-width: 768px) {
         .work-carousel {
-          justify-content: flex-start;  /* allow cards to shrink */
-          gap: 1rem;                    /* spacing between cards */
+          justify-content: flex-start;  
+          gap: 1rem;               
           padding-left: 1rem;
           padding-right: 1rem;
         }
       
         .work-card-wrapper {
-          flex: 0 0 auto;               /* allow width to be controlled */
-          width: 60vw;                  /* width relative to viewport */
-          max-width: 280px;             /* optional cap */
+          flex: 0 0 auto;   
+          width: 60vw;              
+          max-width: 280px;         
         }
       
         .work-card {
           height: auto;
-          min-height: 250px;            /* keeps cards readable */
+          min-height: 250px; 
         }
       }
 
       .work-card h5 {
-        font-size: clamp(1rem, 4vw, 1.25rem); /* min 1rem, max 1.25rem, scales with viewport */
-        text-align: center;                   /* keep centered */
-        line-height: 1.2;                     /* optional: tighter spacing */
+        font-size: clamp(1rem, 4vw, 1.25rem); 
+        text-align: center;
+        line-height: 1.2;  
       }
     
       .work-card h6 {
@@ -471,10 +469,89 @@ section:not(#intro) {
       }
   }
 
+  #future::before {
+    content: "";
+    position: absolute;
+    top: 0;            /* top of future section */
+    left: 0;
+    width: 100%;
+    height: 200px;     /* height of fade */
+    background: linear-gradient(to bottom, white, transparent);
+    z-index: 2;        /* above video (z-index 1) but below text (z-index 3) */
+    pointer-events: none;
+  }
 
+  #future {
+    position: relative;
+    width: 100vw;
+    height: 80vh !important; 
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+  
+  .future-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;         
+    overflow: hidden;
+  }
+  
+  #future-video {
+    width: 100vw;           
+    height: 100%;         
+    object-fit: cover;       
+    object-position: center; 
+    display: block;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* adjust alpha for darkness */
+    pointer-events: none; /* lets clicks pass through */
+  }
+  
+  .future-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    top:10%
+  }
+
+  .future-content h1 {
+    font-size: clamp(3rem, 8vw, 8rem);
+    margin: 0.2em 0;
+    font-weight: bold;
+  }
+  
+  .future-content h2 {
+    font-size: clamp(1.5rem, 5vw, 4rem);
+    margin-top: 8rem; /* adds space above */
+    margin: 0.2rem 0;
+    font-weight: 600;
+  }
+  
+  .future-content p {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    margin-top: 5rem; /* adds space above */
+    margin-bottom: 0.2em;
+    font-weight: 400;
+  }
+  
 footer {
   text-align: center;
-  padding: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1rem, 1vw, 2rem);
   background-color: #212529;
   color: white;
 }

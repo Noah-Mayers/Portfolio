@@ -180,11 +180,19 @@
         </div>
     </section>      
     <section id="future">
-        <div class="container">
-            <h2>The Future</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+        <div class="future-video-wrapper">
+          <video id="future-video" autoplay muted loop playsinline>
+            <source src="https://jetout.com/hubfs/5_1_4_Combo.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay"></div>
         </div>
-    </section>
+      
+        <div class="future-content">
+            <h1 data-aos="fade-up">The Future</h1>
+            <h2 data-aos="fade-up" data-aos-delay="500">Frontend Developer at Jet OUT?</h2>
+            <p data-aos="fade-in" data-aos-delay="2000">only you can decide!</p>
+        </div>
+      </section>
     <footer>&copy; 2025 Noah Mayers | Software Engineer</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -226,6 +234,44 @@
             });
         });
     </script>
-<script src="carousel.js"></script>
+    <script src="carousel.js"></script>
+    <script>
+        window.addEventListener('scroll', () => {
+        const future = document.querySelector('.future-bg');
+        const offset = window.scrollY * 0.5;
+        future.style.transform = `translateY(${offset}px) scale(1.1)`;
+        });
+    </script>
+    <script>
+        const intro = document.getElementById('intro');
+        const skills = document.getElementById('skills');
+        const futureBg = document.querySelector('.future-bg');
+        window.addEventListener('scroll', () => {
+        const skillsRect = skills.getBoundingClientRect();
+        if (skillsRect.top <= 0) {
+            intro.style.opacity = '0';
+            intro.style.pointerEvents = 'none';
+            futureBg.classList.add('visible');
+        } else {
+            intro.style.opacity = '1';
+            intro.style.pointerEvents = 'auto';
+            futureBg.classList.remove('visible');
+        }
+        });
+    </script>
+    <script>
+        function resizeFutureSection() {
+            const video = document.getElementById('future-video');
+            const section = document.getElementById('future');
+            if (video && section) {
+                const rect = video.getBoundingClientRect();
+                section.style.height = rect.height + 'px';
+            }
+        }
+        const video = document.getElementById('future-video');
+        video.addEventListener('loadedmetadata', resizeFutureSection);
+        video.addEventListener('resize', resizeFutureSection);
+        window.addEventListener('resize', resizeFutureSection);
+    </script>
 </body>
 </html>
